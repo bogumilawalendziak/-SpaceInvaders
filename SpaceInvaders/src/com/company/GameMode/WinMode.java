@@ -1,4 +1,4 @@
-package com.company.Mode;
+package com.company.GameMode;
 
 import com.company.EnemyList;
 import com.company.Game;
@@ -19,6 +19,7 @@ public class WinMode extends GameMode implements MouseListener {
     public WinMode(EnemyList enemyList, ObjectList objectList, ObjectSheet objectSheet, Game game) {
         super(objectList, enemyList, objectSheet, game);
         game.addMouseListener(this);
+       // clear and remove object from list
         enemyList.object.clear();
         objectList.object.remove();
         objectList.object.clear();
@@ -34,6 +35,7 @@ public class WinMode extends GameMode implements MouseListener {
     }
 
     public void render(Graphics g) {
+        //drawing "YOU WIN" word
         Graphics2D g2d = (Graphics2D) g;
         Font font = new Font("Serif", Font.PLAIN, 52);
         g.setColor(Color.black);
@@ -42,10 +44,9 @@ public class WinMode extends GameMode implements MouseListener {
         g.setColor(Color.yellow);
         g2d.drawString("YOU WIN", 170, 210);
 
-
+       //Drawing "Menu" word
         Font font2 = new Font("Serif", Font.PLAIN, 32);
         g2d.setFont(font2);
-
         g.setColor(Color.yellow);
         g.drawRect(playX, playY, boxWidth, boxHeight);
         g.setColor(Color.green);
@@ -62,8 +63,6 @@ public class WinMode extends GameMode implements MouseListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        int x = e.getX();
-        int y = e.getY();
 
     }
 
@@ -71,7 +70,7 @@ public class WinMode extends GameMode implements MouseListener {
     public void mousePressed(MouseEvent e) {
         int x = e.getX();
         int y = e.getY();
-
+//checking if MENU was clicked
         if (getBounds().contains(x, y)) {
             game.removeMouseListener(this);
             GameMode.setActualMode(new MenuMode(enemyList, objectList, objectSheet, game));

@@ -2,8 +2,8 @@ package com.company.Objects;
 
 import com.company.EnemyList;
 import com.company.Game;
-import com.company.Mode.GameMode;
-import com.company.Mode.GameOverMode;
+import com.company.GameMode.GameMode;
+import com.company.GameMode.GameOverMode;
 import com.company.ObjectList;
 import com.company.Window;
 

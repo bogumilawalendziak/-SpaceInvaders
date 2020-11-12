@@ -4,18 +4,21 @@ import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-
+/*
+*Object that contains SpriteSheet with all objects in game
+*/
 public class ObjectSheet {
 
     final static int width = 30, height = 30;
 
-    static public BufferedImage sheet = loadSheet("SpaceInvaders-main/SpaceInvaders/resources/ss2.png");
+    static public BufferedImage sheet = loadSheet("SpaceInvaders-main//SpaceInvaders/resources/ss2.png");
     static public BufferedImage enemy;
     static public BufferedImage player;
     static public BufferedImage playerShoot;
     static public BufferedImage enemyShoot;
     static public BufferedImage boom;
 
+    //cutting images from sheet and assign to buffered image
     public ObjectSheet() {
         enemy = sheet.getSubimage(0, 0, width, height);
         playerShoot = sheet.getSubimage(width, 31, width, height);

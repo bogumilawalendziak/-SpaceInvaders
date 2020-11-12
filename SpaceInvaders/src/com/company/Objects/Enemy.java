@@ -3,8 +3,8 @@ package com.company.Objects;
 import com.company.Game;
 import com.company.ObjectList;
 import com.company.EnemyList;
-import com.company.Mode.GameMode;
-import com.company.Mode.WinMode;
+import com.company.GameMode.GameMode;
+import com.company.GameMode.WinMode;
 
 import java.awt.*;
 import java.util.Random;
@@ -43,15 +43,17 @@ public class Enemy extends GameObject{
     @Override
     public void update() {
         collision();
+//calculate frequency of enemy's shooting
         if(enemyList.object.size() > 7) {
             speedOfShooting = enemyList.object.size();
         }else speedOfShooting =7;
             int randomShootTick = rnd.nextInt(100 * (speedOfShooting / 7));
             tick++;
+            // checking if calculated random number is equal 1 (hardcoded value)
             if (fire & numberOnShoot == randomShootTick)
                 objectList.add(new Shoot(ObjectID.EnemyShoot, getX(), getY(), objectSheet, objectList));
 
-            // moving enemys from right to left
+            // moving enemy from right to left
             if (tick == 60) {
                 setX(x + dx);
             } else if (tick == 90) {
@@ -62,9 +64,18 @@ public class Enemy extends GameObject{
     }
 
     public void collision(){
+        //checking if enemy list is empty , or else if object was hit, then remove object and check if object behind him is able to start shooting
         if (enemyList.object.size() == 0) GameMode.setActualMode(new WinMode(enemyList, objectList, objectSheet, game));
-        else if (objectList.object.removeIf(o -> o.getObjectId() == ObjectID.PlayerShoot & getBounds().intersects(o.getBounds())))
-            enemyList.object.remove(this);
+        else if (objectList.object.removeIf(o -> o.getObjectId() == ObjectID.PlayerShoot & getBounds().intersects(o.getBounds()))){
+            //assign actual enemy index to variable
+            int indexOfShootedEnemy = enemyList.object.indexOf(this);
+            //checking if index is >0 to avoid out of bounds exception, if is, then setFire
+            if(indexOfShootedEnemy-1>0)
+             enemyList.object.get(indexOfShootedEnemy-1).setFire(true);
+            // remove object
+             enemyList.object.remove(this);
+        }
+
 
     }
 

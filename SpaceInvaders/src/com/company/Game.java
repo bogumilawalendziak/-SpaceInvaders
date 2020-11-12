@@ -1,8 +1,8 @@
 package com.company;
 
 import com.company.Control.KeyAdapter;
-import com.company.Mode.GameMode;
-import com.company.Mode.MenuMode;
+import com.company.GameMode.GameMode;
+import com.company.GameMode.MenuMode;
 import com.company.Objects.ObjectSheet;
 
 import java.awt.*;

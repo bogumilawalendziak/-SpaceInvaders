@@ -4,7 +4,9 @@ import com.company.Objects.Enemy;
 
 import java.awt.*;
 import java.util.LinkedList;
-
+/*
+* Creating LinkedList for Enemy in Game.
+*/
 public class EnemyList {
     public LinkedList<Enemy> object = new LinkedList<Enemy>();
 
@@ -17,7 +19,7 @@ public class EnemyList {
         this.object.remove(object);
     }
 
-
+// update parameters of Enemy
     public void update() {
         for (int i = 0; i < object.size(); i++) {
             Enemy tempObject = object.get(i);
@@ -25,7 +27,7 @@ public class EnemyList {
         }
 
     }
-
+// Repainting Enemy
     public void render(Graphics g) {
 
         for (int i = 0; i < object.size(); i++) {

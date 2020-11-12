@@ -1,4 +1,4 @@
-package com.company.Mode;
+package com.company.GameMode;
 
 import com.company.EnemyList;
 import com.company.Game;
@@ -6,7 +6,9 @@ import com.company.ObjectList;
 import com.company.Objects.ObjectSheet;
 
 import java.awt.*;
-
+/*
+* Base class for Game Modes
+*/
 public class GameMode extends Frame {
     static GameMode actualMode = null;
     ObjectList objectList;
